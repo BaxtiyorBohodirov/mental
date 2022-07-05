@@ -2,11 +2,25 @@
 $(document).ready(function(){
 
     let currnetNumber=0;
+    let number=0;
+    let timeInterval=0;
+    let degreeExample=0;
     let myInterval;
-    let numbers=[
-        [7,-2,3,-7,1,5,-1,2,-7,1],[7,-2,4,-1,-7,2,-3,7,2,-3],[7,2,-1,-7,5,-6,6,2,-3,2],[2,7,-5,-1,-3,4,-1,-2,7,-2],[7,-2,1,3,-7,1,-2,7,-3,2],[7,-2,1,-5,7,-1,-2,4,-3,1],
-        [4,5,-1,-7,6,1,-3,2,-7,5],[7,-2,1,-5,7,-2,-1,-5,7,-1],[7,-1,-6,7,-1,-6,7,-1,-5,2],[7,-5,-1,3,5,-7,-2,1,7,-2]
-];
+    let currentArr;
+    let numbers=
+    {
+        A:[
+            [7,-2,3,-7,1,5,-1,2,-7,1],[7,-2,4,-1,-7,2,-3,7,2,-3],[7,2,-1,-7,5,-6,6,2,-3,2],[2,7,-5,-1,-3,4,-1,-2,7,-2],[7,-2,1,3,-7,1,-2,7,-3,2],[7,-2,1,-5,7,-1,-2,4,-3,1],
+            [4,5,-1,-7,6,1,-3,2,-7,5],[7,-2,1,-5,7,-2,-1,-5,7,-1],[7,-1,-6,7,-1,-6,7,-1,-5,2],[7,-5,-1,3,5,-7,-2,1,7,-2]
+        ],
+        B:[
+
+        ],
+        C:[
+            
+        ],
+    }
+    
     let javoblar=[];
     let examples="";
     
@@ -14,19 +28,27 @@ $(document).ready(function(){
     {
         let index=0;
         for (const i of examples) {
-              let son=numbers[index][currnetNumber];
-              $(i).children('h1').text(son)
-              if(currnetNumber===0)
-              {
-                 let j={
-                    misol:[son],
-                 }
-                 javoblar.push(j);
-              }
-              else
-              {
-                  javoblar[index].misol.push(son)
-              }
+            if(currnetNumber===0)
+            {
+                let r=Math.floor(Math.random()*currentArr.length);
+                let j={
+                    index:r
+                    }
+                javoblar.push(j);
+                    
+            }
+            let r=Math.floor(currentArr[javoblar[index].index].length*Math.random())
+            let son=currentArr[javoblar[index].index][r];
+            
+            $(i).children('h1').text(son)
+            if(currnetNumber===0)
+            {
+                javoblar[index].misol=[son]
+            }
+            else
+            {
+                javoblar[index].misol.push(son)
+            }
             index++;
         }
         currnetNumber++;
@@ -46,7 +68,19 @@ $(document).ready(function(){
         console.log(javoblar);
     }
     $('.btn.select').click(function(){
-        let number=parseInt($('#playersNumber').val());
+        number=parseInt($('#playersNumber').val());
+        timeInterval=parseInt($('#timeInterval').val());
+        degreeExample=parseInt($('#degreeExample').val());
+        if(degreeExample===1){
+            currentArr=numbers.A;
+        }
+        else if(degreeExample===2)
+        {
+            currentArr=numbers.B;
+        }
+        else{
+            currentArr=numbers.C;
+        }
         let elem ='<div class="example"><h1>0</h1></div>';
         for (let index = 0; index < number; index++) {
             $('.examples').append(elem)
@@ -55,12 +89,15 @@ $(document).ready(function(){
         examples=$('.example');
     })
     $('.btn.start').click(function(){
-        myInterval=setInterval(changeExampleText,1000)
+        myInterval=setInterval(changeExampleText,timeInterval*1000)
+        $('.example').css('background-color',"rgb(58 235 9)");
+        $('.example h1').css({'color':"black",'font-size':'152px'});
         $('.btn.start').css('display','none');
         $('.btn.check').css('display','inline');
         
     })
    $('.btn.check').click(function(){
+        currnetNumber=0;
         let inputs=$('.inputAnswer');
         let index=0;
         for (const input of inputs) {
@@ -81,9 +118,11 @@ $(document).ready(function(){
             {
                 $(examples[index]).addClass('back-red');
             }
-            $('.btn.check').css('display','none');
+           
             $(examples[index]).append(elem);
              index++;
         }
+        $('.btn.check').css('display','none');
+        $('.btn.start').css('display','inline')
    })  
 })

@@ -86,21 +86,27 @@ text-align: center;
     height: 100vh;
     background-color: aqua;
     display: flex;
-    flex-direction: column;
-    position: absolute;
-    padding: 250px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    position: fixed;
     top: 0;
     left: 0;
     align-items: center;
 }
+.oyinchi_son div
+{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 .oyinchi_son h1{
     font-size: 80px;
     color: #e91e63;
-    margin: 25px 0px;
 }
 .oyinchi_son select
 {
-    width: 60%;
+    width: 90%;
     padding: 15px 10px;
     font-size: 50px;
     text-align: center;
@@ -112,7 +118,8 @@ text-align: center;
 }
 .oyinchi_son .btn.select
 {
-    margin-top: 150px;
+    position: absolute;
+    /* margin-top: 150px; */
 }
 .oyinchi_son select:hover
 {
