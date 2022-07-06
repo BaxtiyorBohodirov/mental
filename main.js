@@ -29,7 +29,7 @@ $(document).ready(function(){
     {
         if(nol)
         {
-            $('.example').text("0");
+            $('.example h1').text("0");
             nol=true;
         }
         else
