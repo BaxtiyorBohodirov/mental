@@ -30,7 +30,7 @@ $(document).ready(function(){
         if(nol)
         {
             $('.example h1').text("0");
-            nol=true;
+            nol=false;
         }
         else
         {
