@@ -7,6 +7,7 @@ $(document).ready(function(){
     let degreeExample=0;
     let myInterval;
     let currentArr;
+    let nol=false;
     let numbers=
     {
         A:[
@@ -26,36 +27,44 @@ $(document).ready(function(){
     
     function changeExampleText()
     {
-        let index=0;
-        for (const i of examples) {
-            if(currnetNumber===0)
-            {
-                let r=Math.floor(Math.random()*currentArr.length);
-                let j={
-                    index:r
-                    }
-                javoblar.push(j);
-                    
-            }
-            let r=Math.floor(currentArr[javoblar[index].index].length*Math.random())
-            let son=currentArr[javoblar[index].index][r];
-            
-            $(i).children('h1').text(son)
-            if(currnetNumber===0)
-            {
-                javoblar[index].misol=[son]
-            }
-            else
-            {
-                javoblar[index].misol.push(son)
-            }
-            index++;
-        }
-        currnetNumber++;
-        if(currnetNumber===10)
+        if(nol)
         {
-            clearInterval(myInterval);
-            inputs();
+            $('.example').text("0");
+            nol=true;
+        }
+        else
+        {
+            let index=0;
+            for (const i of examples) {
+                if(currnetNumber===0)
+                {
+                    let r=Math.floor(Math.random()*currentArr.length);
+                    let j={
+                        index:r
+                        }
+                    javoblar.push(j);
+                        
+                }
+                let r=Math.floor(currentArr[javoblar[index].index].length*Math.random())
+                let son=currentArr[javoblar[index].index][r];
+                
+                $(i).children('h1').text(son)
+                if(currnetNumber===0)
+                {
+                    javoblar[index].misol=[son]
+                }
+                else
+                {
+                    javoblar[index].misol.push(son)
+                }
+                index++;
+            }
+            currnetNumber++;
+            if(currnetNumber===10)
+            {
+                clearInterval(myInterval);
+                inputs();
+            }
         }
     }
 
@@ -89,7 +98,7 @@ $(document).ready(function(){
         examples=$('.example');
     })
     $('.btn.start').click(function(){
-        myInterval=setInterval(changeExampleText,timeInterval*1000)
+        myInterval=setInterval(changeExampleText,timeInterval*500)
         $('.example.back-red').removeClass("back-red");
         $('.example h1').text("0");
         $('.example h1').css({'color':"black",'font-size':'152px'});
