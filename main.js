@@ -65,7 +65,7 @@ $(document).ready(function(){
                 clearInterval(myInterval);
                 inputs();
             }
-            nol=false
+            nol=true
         }
     }
 
