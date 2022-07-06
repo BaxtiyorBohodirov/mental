@@ -90,10 +90,12 @@ $(document).ready(function(){
     })
     $('.btn.start').click(function(){
         myInterval=setInterval(changeExampleText,timeInterval*1000)
-        $('.example').css('background-color',"rgb(58 235 9)");
+        $('.example.back-red').removeClass("back-red");
+        $('.example h1').text("0");
         $('.example h1').css({'color':"black",'font-size':'152px'});
         $('.btn.start').css('display','none');
         $('.btn.check').css('display','inline');
+        javoblar=[];
         
     })
    $('.btn.check').click(function(){
@@ -101,12 +103,13 @@ $(document).ready(function(){
         let inputs=$('.inputAnswer');
         let index=0;
         for (const input of inputs) {
-            let javob=$(input).val();
+            let javob=parseInt($(input).val());
             let togriJavob=javoblar[index].misol.reduce((partialSum, a) => partialSum + a, 0);
             $(input).remove();
             let elem="";
             let j=0;
-            if(javob==togriJavob)
+            console.log(typeof javob+" "+typeof togriJavob);
+            if(javob===togriJavob)
             {
                 j=1
                  elem='<h1 style="font-size:80px;color:white">Javobingiz to\'g\'ri</h1>'
