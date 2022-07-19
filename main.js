@@ -27,13 +27,13 @@ $(document).ready(function(){
     
     function changeExampleText()
     {
-        if(nol)
-        {
-            $('.example h1').text("0");
-            nol=false;
-        }
-        else
-        {
+        // if(nol)
+        // {
+        //     $('.example h1').text("0");
+        //     nol=false;
+        // }
+        // else
+        // {
             let index=0;
             for (const i of examples) {
                 if(currnetNumber===0)
@@ -66,7 +66,7 @@ $(document).ready(function(){
                 inputs();
             }
             nol=true
-        }
+        // }
     }
 
     function inputs()
@@ -79,7 +79,7 @@ $(document).ready(function(){
     }
     $('.btn.select').click(function(){
         number=parseInt($('#playersNumber').val());
-        timeInterval=parseInt($('#timeInterval').val());
+        timeInterval=parseFloat($('#timeInterval').val());
         degreeExample=parseInt($('#degreeExample').val());
         if(degreeExample===1){
             currentArr=numbers.A;
@@ -99,7 +99,7 @@ $(document).ready(function(){
         examples=$('.example');
     })
     $('.btn.start').click(function(){
-        myInterval=setInterval(changeExampleText,timeInterval*500)
+        myInterval=setInterval(changeExampleText,timeInterval*1000)
         $('.example.back-red').removeClass("back-red");
         $('.example h1').text("0");
         $('.example h1').css({'color':"black",'font-size':'152px'});
